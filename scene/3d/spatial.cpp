@@ -29,11 +29,6 @@
 /**************************************************************************/
 
 #include "spatial.h"
-extern "C"{
-	#include <core/lua/lua.h>
-	#include <core/lua/lauxlib.h>
-	#include <core/lua/lualib.h>
-}
 
 #include "core/engine.h"
 #include "core/math/transform_interpolator.h"
@@ -78,29 +73,6 @@ future: no idea
  */
 
 SpatialGizmo::SpatialGizmo() {
-}
-
-void Spatial::lua_ready(){
-	lua_State *L = luaL_newstate();
-	//luaL_openlibs(L);
-
-    char * code = "message = \"Hello world!\"";
-
-    if (luaL_dostring(L, code) == LUA_OK) {
-		ERR_PRINT("Code ran!");
-    }
-
-	lua_getglobal(L, "message");
-    const char * message = lua_tostring(L, -1);
-	
-    ERR_PRINT(message);
-
-	ERR_PRINT("READY called");
-}
-
-
-void Spatial::lua_process(){
-	ERR_PRINT("process called");
 }
 
 void Spatial::_notify_dirty() {
