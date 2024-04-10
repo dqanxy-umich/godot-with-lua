@@ -191,6 +191,7 @@ SConscript("math/SCsub")
 SConscript("crypto/SCsub")
 SConscript("io/SCsub")
 SConscript("bind/SCsub")
+SConscript("lua/SCsub")
 
 
 # Build it all as a library

@@ -29,6 +29,11 @@
 /**************************************************************************/
 
 #include "spatial.h"
+extern "C"{
+	#include <core/lua/lua.h>
+	#include <core/lua/lauxlib.h>
+	#include <core/lua/lualib.h>
+}
 
 #include "core/engine.h"
 #include "core/math/transform_interpolator.h"
@@ -73,6 +78,29 @@ future: no idea
  */
 
 SpatialGizmo::SpatialGizmo() {
+}
+
+void Spatial::lua_ready(){
+	lua_State *L = luaL_newstate();
+	//luaL_openlibs(L);
+
+    char * code = "message = \"Hello world!\"";
+
+    if (luaL_dostring(L, code) == LUA_OK) {
+		ERR_PRINT("Code ran!");
+    }
+
+	lua_getglobal(L, "message");
+    const char * message = lua_tostring(L, -1);
+	
+    ERR_PRINT(message);
+
+	ERR_PRINT("READY called");
+}
+
+
+void Spatial::lua_process(){
+	ERR_PRINT("process called");
 }
 
 void Spatial::_notify_dirty() {
@@ -254,6 +282,7 @@ Vector3 Spatial::get_global_translation() const {
 }
 
 void Spatial::set_global_translation(const Vector3 &p_translation) {
+	
 	Transform transform = get_global_transform();
 	transform.set_origin(p_translation);
 	set_global_transform(transform);
@@ -906,6 +935,9 @@ void Spatial::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_notify_transform", "enable"), &Spatial::set_notify_transform);
 	ClassDB::bind_method(D_METHOD("is_transform_notification_enabled"), &Spatial::is_transform_notification_enabled);
+
+	ClassDB::bind_method(D_METHOD("custom_ready"), &Spatial::lua_ready);
+	ClassDB::bind_method(D_METHOD("custom_process"), &Spatial::lua_process);
 
 	ClassDB::bind_method(D_METHOD("rotate", "axis", "angle"), &Spatial::rotate);
 	ClassDB::bind_method(D_METHOD("global_rotate", "axis", "angle"), &Spatial::global_rotate);

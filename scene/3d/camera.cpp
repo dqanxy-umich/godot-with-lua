@@ -75,6 +75,7 @@ void Camera::_validate_property(PropertyInfo &p_property) const {
 }
 
 void Camera::_update_camera() {
+	
 	if (!is_inside_tree()) {
 		return;
 	}

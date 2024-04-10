@@ -148,6 +148,8 @@ public:
 
 	Ref<World> get_world() const;
 
+	void lua_ready();
+	void lua_process();
 	void set_translation(const Vector3 &p_translation);
 	void set_rotation(const Vector3 &p_euler_rad);
 	void set_rotation_degrees(const Vector3 &p_euler_deg);
