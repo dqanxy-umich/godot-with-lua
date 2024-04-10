@@ -73,6 +73,8 @@
 #include "core/translation.h"
 #include "core/undo_redo.h"
 
+#include "core/lua/lua_engine.h"
+
 static Ref<ResourceFormatSaverBinary> resource_saver_binary;
 static Ref<ResourceFormatLoaderBinary> resource_loader_binary;
 static Ref<ResourceFormatImporter> resource_format_importer;
@@ -213,6 +215,7 @@ void register_core_types() {
 	ClassDB::register_class<JSONParseResult>();
 
 	ClassDB::register_virtual_class<ResourceImporter>();
+	ClassDB::register_class<LuaEngine>();
 
 	ip = IP::create();
 

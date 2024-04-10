@@ -3,3 +3,4 @@
 Import("env")
 
 env.add_source_files(env.core_sources, "*.c")
+env.add_source_files(env.core_sources, "*.cpp")
