@@ -908,9 +908,6 @@ void Spatial::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_notify_transform", "enable"), &Spatial::set_notify_transform);
 	ClassDB::bind_method(D_METHOD("is_transform_notification_enabled"), &Spatial::is_transform_notification_enabled);
 
-	ClassDB::bind_method(D_METHOD("custom_ready"), &Spatial::lua_ready);
-	ClassDB::bind_method(D_METHOD("custom_process"), &Spatial::lua_process);
-
 	ClassDB::bind_method(D_METHOD("rotate", "axis", "angle"), &Spatial::rotate);
 	ClassDB::bind_method(D_METHOD("global_rotate", "axis", "angle"), &Spatial::global_rotate);
 	ClassDB::bind_method(D_METHOD("global_scale", "scale"), &Spatial::global_scale);
