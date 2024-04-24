@@ -1,5 +1,6 @@
 #include "lua_engine.h"
 
+
 void LuaEngine::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("hello_world"), &LuaEngine::hello_world);
 	ClassDB::bind_method(D_METHOD("do_string", "code"), &LuaEngine::do_string);
@@ -8,6 +9,14 @@ void LuaEngine::_bind_methods() {
 LuaEngine::LuaEngine(){
 	state = luaL_newstate();
 	luaL_openlibs(state);
+	//C Modules
+	luaL_requiref(state, "pb", luaopen_pb, 1);
+	luaL_requiref(state, "pb.io", luaopen_pb_io, 1);
+	luaL_requiref(state, "pb.conv", luaopen_pb_conv, 1);
+	luaL_requiref(state, "pb.buffer", luaopen_pb_buffer, 1);
+	luaL_requiref(state, "pb.slice", luaopen_pb_slice, 1);
+	luaL_requiref(state, "pb.unsafe", luaopen_pb_unsafe, 1);
+
 }
 LuaEngine::~LuaEngine(){
 	lua_close(state);

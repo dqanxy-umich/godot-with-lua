@@ -4,6 +4,7 @@ extern "C"{
 	#include <core/lua/lua.h>
 	#include <core/lua/lauxlib.h>
 	#include <core/lua/lualib.h>
+	#include <core/lua/protobuf/pb.h>
 }
 
 class LuaEngine : public Object {
